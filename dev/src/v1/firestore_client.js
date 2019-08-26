@@ -70,6 +70,7 @@ class FirestoreClient {
    *     API remote host.
    */
   constructor(opts) {
+    console.log(`${new Date().toISOString()} [FirestoreClient constructor] start`);
     opts = opts || {};
     this._descriptors = {};
 
@@ -91,6 +92,8 @@ class FirestoreClient {
     opts.scopes = this.constructor.scopes;
     const gaxGrpc = new gax.GrpcClient(opts);
 
+    console.log(`${new Date().toISOString()} [FirestoreClient constructor] After GrpcClient init`);
+
     // Save the auth object to the client, for use by other methods.
     this.auth = gaxGrpc.auth;
 
@@ -111,6 +114,8 @@ class FirestoreClient {
       ['google/firestore/v1/firestore.proto']
     );
 
+    console.log(`${new Date().toISOString()} [FirestoreClient constructor] After GrpcClient loadProto`);
+
     // This API contains "path templates"; forward-slash-separated
     // identifiers to uniquely identify resources within the API.
     // Create useful helper objects for these.
@@ -129,6 +134,8 @@ class FirestoreClient {
       ),
     };
 
+    console.log(`${new Date().toISOString()} [FirestoreClient constructor] After GrpcClient path templates`);
+
     // Some of the methods on this service return "paged" results,
     // (e.g. 50 results at a time, with tokens to get subsequent
     // pages). Denote the keys used for pagination and results.
@@ -145,6 +152,8 @@ class FirestoreClient {
       ),
     };
 
+    console.log(`${new Date().toISOString()} [FirestoreClient constructor] After GrpcClient page descriptors`);
+
     // Some of the methods on this service provide streaming responses.
     // Provide descriptors for these.
     this._descriptors.stream = {
@@ -156,6 +165,8 @@ class FirestoreClient {
       listen: new gax.StreamDescriptor(gax.StreamType.BIDI_STREAMING),
     };
 
+    console.log(`${new Date().toISOString()} [FirestoreClient constructor] After GrpcClient stream descriptors`);
+
     // Put together the default options sent with requests.
     const defaults = gaxGrpc.constructSettings(
       'google.firestore.v1.Firestore',
@@ -163,6 +174,8 @@ class FirestoreClient {
       opts.clientConfig,
       {'x-goog-api-client': clientHeader.join(' ')}
     );
+
+    console.log(`${new Date().toISOString()} [FirestoreClient constructor] After GrpcClient construct settings`);
 
     // Set up a dictionary of "inner API calls"; the core implementation
     // of calling the API is handled in `google-gax`, with this code
@@ -175,6 +188,8 @@ class FirestoreClient {
       protos.google.firestore.v1.Firestore,
       opts
     );
+
+    console.log(`${new Date().toISOString()} [FirestoreClient constructor] After GrpcClient create stub`);
 
     // Iterate over each of the methods that the service provides
     // and create an API call method for each.
@@ -211,6 +226,8 @@ class FirestoreClient {
           this._descriptors.stream[methodName]
       );
     }
+
+    console.log(`${new Date().toISOString()} [FirestoreClient constructor] After method patch`);
   }
 
   /**
