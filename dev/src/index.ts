@@ -392,10 +392,12 @@ export class Firestore {
         let client: GapicClient;
 
         if (this._settings.ssl === false) {
+          logger('Firestore', null, 'SSL False, requiring grpc-js');
           const grpc = require('@grpc/grpc-js');
           const sslCreds = grpc.credentials.createInsecure();
           client = new module.exports.v1({sslCreds, ...this._settings});
         } else {
+          logger('Firestore', null, 'SSL Not False, using regular v1');
           client = new module.exports.v1(this._settings);
         }
 
