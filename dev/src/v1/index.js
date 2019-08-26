@@ -14,8 +14,15 @@
 
 'use strict';
 
+console.log(`${new Date().toISOString()} [Firestore V1 require] start`);
+
 const FirestoreClient = require('./firestore_client');
+
+console.log(`${new Date().toISOString()} [Firestore V1 require] after client require`);
+
 const FirestoreAdminClient = require('./firestore_admin_client');
+
+console.log(`${new Date().toISOString()} [Firestore V1 require] after admin require`);
 
 FirestoreClient.FirestoreClient = FirestoreClient;
 FirestoreClient.FirestoreAdminClient = FirestoreAdminClient;
