@@ -22,7 +22,7 @@ import {validateFunction} from './validate';
 let libVersion: string;
 
 /*! The external function used to emit logs. */
-let logFunction = (msg: string) => {};
+let logFunction = console.log;
 
 /**
  * Log function to use for debug output. By default, we don't perform any
