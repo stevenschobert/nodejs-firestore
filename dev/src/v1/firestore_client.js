@@ -14,11 +14,23 @@
 
 'use strict';
 
+console.log(`${new Date().toISOString()} [FirestoreClient require] start`);
+
 const gapicConfig = require('./firestore_client_config.json');
+
+console.log(`${new Date().toISOString()} [FirestoreClient require] after client config`);
+
 const gax = require('google-gax');
+
+console.log(`${new Date().toISOString()} [FirestoreClient require] after google-gax`);
+
 const path = require('path');
 
+console.log(`${new Date().toISOString()} [FirestoreClient require] after path`);
+
 const VERSION = require('../../../package.json').version;
+
+console.log(`${new Date().toISOString()} [FirestoreClient require] after version`);
 
 /**
  * The Cloud Firestore service.
@@ -1532,5 +1544,7 @@ class FirestoreClient {
       .database;
   }
 }
+
+console.log(`${new Date().toISOString()} [FirestoreClient require] after class def`);
 
 module.exports = FirestoreClient;
